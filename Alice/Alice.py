@@ -11,8 +11,8 @@ from feistel import *
 
 wlan = "eth0"
 #devo configurarlo come host A
-os.system('ifconfig ' + wlan + ' 172.30.1.2/24')
-os.system('route add default gw 172.30.1.1')
+#os.system('ifconfig ' + wlan + ' 172.30.1.2/24')
+#os.system('route add default gw 172.30.1.1')
 
 ###############################################################################
 
@@ -71,7 +71,7 @@ while int_option1 is None:
             # Both the BitArray and the ConstBitStream classes are base classes for BitStream and so all of their methods are also available for
             # BitStream objects.
             # 	image = BitStream(filename = './lena256.raw')
-            image = BitStream(filename="./image.jpg")
+            image = BitStream(filename="./original.jpg")
         except IOError:
             print('image not found')
             sys.exit(0)
