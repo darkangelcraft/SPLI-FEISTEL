@@ -11,8 +11,8 @@ from feistel import *
 
 wlan = "eth0"
 #devo configurarlo come host A
-os.system('ifconfig ' + wlan + ' 172.30.1.2/24')
-os.system('route add default gw 172.30.1.1')
+#os.system('ifconfig ' + wlan + ' 172.30.1.2/24')
+#os.system('route add default gw 172.30.1.1')
 
 ###############################################################################
 
@@ -53,7 +53,7 @@ while int_option1 is None:
         # stampo i file da selezionare
         i = 0
         for num in images:
-            print '\t' + str(i) + ') ' + images[i]
+            print '\t' + str(i) + ') ' + images[i] + '\t'+ str(os.path.getsize(images[i]))[:3]+' KB'
             i = i + 1
 
         try:
@@ -71,14 +71,14 @@ while int_option1 is None:
             # Both the BitArray and the ConstBitStream classes are base classes for BitStream and so all of their methods are also available for
             # BitStream objects.
             # 	image = BitStream(filename = './lena256.raw')
-            image = BitStream(filename="./original.jpg")
+            image = BitStream(filename="./"+images[int(image_selected)])
         except IOError:
             print('image not found')
             sys.exit(0)
 
         # restituisce la lunghezza in bit dell'oggetto bitstring
         image_len = image.length
-        print("image to cipher is:"+str("image")+" , \ndimensione %d Bits (%d Bytes)," % (image_len, image_len / 8))
+        print("image to cipher is:"+str(images[int(image_selected)])+" , \ndimensione %d Bits (%d Bytes)," % (image_len, image_len / 8))
 
         # controllo di quanti chunk e' formata l'immagine
         num_chunk = image_len / CHUNK_DIM
@@ -104,10 +104,10 @@ while int_option1 is None:
 
         # key ="0000000000000011"	#chiave a 16 bit = 3(10)
         # key=BitStream(bin=key)
-        key = BitStream('0b 0000 0000 0000 0111')
+        key = BitStream('0b 0000 0000 0000 0011')
         # N=BitStream('0b 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101')
         # print ("Chiave di cifratura: %d, N: %d" % (key.int, N.int))
-        print ("Encryption key: %d" % (key.int))
+        print ("\033[94mEncryption key: %d\033[0m" % (key.int))
 
         # comincio a prelevare chunk e a compiere la cifratura
         for i in range(num_chunk):  # i=0, ..., 1024
@@ -126,7 +126,7 @@ while int_option1 is None:
                 cifrato.append(feist_chunk)
                 old_chunk = feist_chunk
 
-        print "\033[cipher complete!\n\n\033[0m"
+        print "\033[92mcipher complete!\033[0m"
         critto_image_path = open('./encrypted.jpg', 'wb')
         BitStream(cifrato).tofile(critto_image_path)
         critto_image_path.close()
