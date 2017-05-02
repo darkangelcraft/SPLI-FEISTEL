@@ -126,7 +126,7 @@ while int_option1 is None:
                 cifrato.append(feist_chunk)
                 old_chunk = feist_chunk
 
-        print('Cipher completed!')
+        print "\033[cipher complete!\n\n\033[0m"
         critto_image_path = open('./encrypted.jpg', 'wb')
         BitStream(cifrato).tofile(critto_image_path)
         critto_image_path.close()

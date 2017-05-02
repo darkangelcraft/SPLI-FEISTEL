@@ -79,7 +79,7 @@ while int_option2 is None:
                 # print(defeist_chunk)
 
         # Scrittura su file
-        print("\nDecryption Complete!\n")
+        print "\033[decryption complete!\n\n\033[0m"
         d = open('./decrypted.jpg', 'wb')
         BitStream(original).tofile(d)
         d.close()
