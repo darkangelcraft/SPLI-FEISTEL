@@ -5,7 +5,7 @@ from bitstring import *
 import hashlib
 from hashlib import *
 
-ORIGINAL_FILE="./original.jpg"
+ORIGINAL_FILE="./original_L.jpg"
 ENCRYPTED_FILE="./encrypted.jpg"
 DECRYPTED_FILE="./decrypted_image.jpg"
 CHUNK_LEN=512#bit
