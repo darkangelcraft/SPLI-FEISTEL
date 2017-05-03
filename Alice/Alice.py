@@ -11,8 +11,8 @@ from feistel import *
 
 wlan = "eth0"
 #devo configurarlo come host A
-#os.system('ifconfig ' + wlan + ' 172.30.1.2/24')
-#os.system('route add default gw 172.30.1.1')
+os.system('ifconfig ' + wlan + ' 172.30.1.2/24')
+os.system('route add default gw 172.30.1.1')
 
 ###############################################################################
 
